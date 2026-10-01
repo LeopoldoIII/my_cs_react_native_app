@@ -1,0 +1,34 @@
+appId: com.anonymous.my_cs_react_native_app
+---
+- launchApp
+
+# Verify Home Screen is loaded
+- assertVisible: "Automation Components"
+
+# Test Button Flow
+- tapOn: "Button"
+- assertVisible: "Button Feature"
+- tapOn: 
+    id: "customButton"
+
+# Go back (Hardware back on Android, Swipe back on iOS)
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - pressKey: back
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - swipe:
+          direction: RIGHT
+          duration: 300
+
+# Test Switch Flow
+- assertVisible: "Automation Components"
+- tapOn: "Switch"
+- assertVisible: "Switch is OFF"
+- tapOn: 
+    id: "customSwitch"
+- assertVisible: "Switch is ON"
